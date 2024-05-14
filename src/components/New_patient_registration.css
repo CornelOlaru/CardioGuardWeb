@@ -1,0 +1,76 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+.form-container {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 11px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid  rgba(206, 42, 42, 0.5); 
+}
+
+h1 {
+  color: rgb(206, 42, 42);
+  text-align: center;
+  margin-bottom: 20px; 
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 11px;
+  box-sizing: border-box;
+  box-shadow: 0px 1px 0px 0px rgb(206, 42, 42); /* adaugam umbra doar jos */
+}
+
+.button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 11px;
+  background-color:rgb(206, 42, 42);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+.button-cancel {
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.2); 
+  border-radius: 11px;
+  width: 100%;
+  padding: 10px;
+  color:gray; 
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.logout-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 11px;
+  background-color: rgb(206, 42, 42);
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  margin-top: 30px;
+}
+
+/* Adding hover effects for interactivity */
+.button:hover, .logout-button:hover {
+  background-color: darkred; /* Darker on hover */
+}
+
+.button-cancel:hover {
+  background-color: #eee; /* Light grey on hover */
+}
