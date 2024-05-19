@@ -23,7 +23,7 @@ export default function Login() {
           <div className="login-btn-container">
 
           <Link to="/login" className="login-btn">Login</Link>
-          <Link to="/registration" className="register-btn">Register new account</Link>
+          <Link to="/" className="register-btn">Register new account</Link>
           </div>
         </form>
       </div>
