@@ -15,7 +15,7 @@ export default function Navbar() {
         </Link>
        {click ? <Link to="/registration" className="nav-btn" onClick={loginHandle}>
             Login
-        </Link> : <Link to="/login" className="nav-btn" onClick={loginHandle}>
+        </Link> : <Link to="/" className="nav-btn" onClick={loginHandle}>
               Register
         </Link>}
     </nav>
