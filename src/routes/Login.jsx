@@ -5,28 +5,32 @@ import passIco from "../assets/pass-ico.svg"
 import { Link } from "react-router-dom"
 export default function Login() {
   return (
-    <>
+    <div className="login-container">
       <Navbar/>
-        <div className="login-container">
+        <div className="login-sub-container">
         <h2 className="login-title">Login</h2>
         <p className="login-sub-title">Log into your account</p>
-        <form action="login">
+        <form className="login-form" action="/doctor-dashboard">
           
           <div className="name-cont">
           <img src={userIco} alt="Username Icon" />
-          <input type="text" placeholder="Username"/>
+          <input type="text" placeholder="Username" required/>
           </div>
           <div className="name-cont">
           <img src={passIco} alt="Username Icon" />
-          <input type="password" placeholder="Password"/>
+          <input type="password" placeholder="Password" required/>
           </div>
           <div className="login-btn-container">
 
-          <Link to="/" className="login-btn">Login</Link>
+          <input className="login-btn" type="submit" value="Login"/>
+
+
+          
+
           <Link to="/registration" className="register-btn">Register new account</Link>
           </div>
         </form>
       </div>
-    </>
+    </div>
   )
 }
