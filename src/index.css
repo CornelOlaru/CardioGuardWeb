@@ -17,16 +17,56 @@ html {
 
 body {
   background-color: #EAEAEA;
-  background-size: 100%;
-  background-repeat: repeat;
-  overflow-x: hidden;
+  width: 100%;
 }
 input{
   border: none;
   background-color: transparent;
   font-size: 1rem;
-  /* width: 100%; */
+  
 }
+
 p{
   color: #4A5568;
+}
+
+.red-btn{
+  padding: 10px;
+ border-radius: 13px;
+ border: none;
+ background-color: #C10000;
+ border: 1px solid #C10000;
+
+ color: #FFFF;
+ text-decoration: none;
+ width: 100%;
+ /* height: 50px; */
+ text-align: center;
+ font-size: 18px;
+ font-weight: 500;
+}
+.red-btn:hover{
+  background-color: #a50000;
+  border: 1px solid #C10000;
+ 
+}
+.gray-btn{
+  display: block;
+  padding: 10px;
+  border-radius: 13px;
+  background-color: #eaeaea;
+  border: 1px solid #4A5568;
+  color: #4A5568;
+  font-weight: 500;
+  font-size: 18px;
+  text-decoration: none;
+  width: 100%;
+  /* height: 50px; */
+  text-align: center;
+  margin: 10px 0;
+}
+.gray-btn:hover{
+  color: #eaeaea;
+  background-color: #C10000;
+  border: 1px solid #C10000;
 }

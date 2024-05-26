@@ -3,16 +3,21 @@ nav{
     display: flex;
     align-items: center;
     flex-direction: row;
-    justify-content: space-between;
 }
-
-
+.dashboard-nav{
+    justify-content: space-between;
+    
+}
+.navbar{
+    justify-content:space-around;
+    
+}
 .nav-btn{
     padding: 10px;
     border-radius: 13px;
     border: none;
     background-color: #C10000;
-    border: 2px solid #C10000;
+    border: 1px solid #C10000;
 
     color: #FFFF;
     text-decoration: none;
@@ -22,7 +27,7 @@ nav{
 }
 
 .nav-btn:hover{
-    background-color: #EAEAEA;
-    border: 2px solid #C10000;
-    color: #C10000;
+    background-color: #a50000;
+    border: 1px solid #C10000;
+    
 }

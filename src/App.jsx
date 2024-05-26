@@ -4,6 +4,8 @@ import './App.css'
 // import Home from './routes/Home'
 import Login from './routes/Login'
 import Registration from './routes/Registration'
+import DoctorDashboard from './routes/DoctorDashboard'
+import NewPatientRegstration from './routes/NewPatientRegstration'
 
 function App() {
  
@@ -13,10 +15,10 @@ function App() {
       <BrowserRouter>
       <Routes>
        
-        <Route path='/' element={<Registration/>}/>
-        <Route path='/login' element={<Login />}/>
-
-        
+        <Route path='/' element={<Login />}/>
+        <Route path='/registration' element={<Registration/>}/>
+        <Route path='/doctor-dashboard' element={<DoctorDashboard/>}/>
+        <Route path='/patient-registration' element={<NewPatientRegstration/>}/>
       </Routes>
       </BrowserRouter>
     </>

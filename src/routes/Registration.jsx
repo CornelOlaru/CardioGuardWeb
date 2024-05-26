@@ -9,26 +9,26 @@ export default function Registration() {
     
         <div className="registration-container">
         <h2 className="registration-title">Registration</h2>
-        <p className="registration-sub-title">Log into your account</p>
-        <form action="registration">
+        <p className="registration-sub-title">Register a new account</p>
+        <form action="/doctor-dashboard">
           
           
          
-          <input className="name-cont" type="text" placeholder="Name"/>
-          <input className="name-cont" type="text" placeholder="First Name"/>
-          <input className="name-cont" type="text" placeholder="CNP"/>
-          <input className="name-cont" type="text" placeholder="Username"/>
-          <input className="name-cont" type="text" placeholder="Password"/>
-          <input className="name-cont" type="text" placeholder="Retype Password"/>
+          <input className="name-cont" type="text" placeholder="Name"            required/>
+          <input className="name-cont" type="text" placeholder="First Name"      required/>
+          <input className="name-cont" type="number" name="CNP" placeholder="CNP"required/>
+          <input className="name-cont" type="text" placeholder="Username"        required/>
+          <input className="name-cont" type="text" placeholder="Password"        required/>
+          <input className="name-cont" type="text" placeholder="Retype Password" required/>
           <div className="radio">
-        <span>  <input className="" type="radio" name="user" /> Medic</span>          
-        <span>  <input className="" type="radio" name="user" /> Patient</span>          
+        <span>  <input className="" type="radio" name="user" required/> Medic</span>          
+        <span>  <input className="" type="radio" name="user" required/> Patient</span>          
           </div>
           
           <div className="registration-btn-container">
-
-          <Link to="/" className="red-btn">Register</Link>
-          <Link to="/login" className="gray-btn">Log into an existing account</Link>
+          <input className="red-btn" type="submit" value="Register" />
+          
+          <Link to="/" className="gray-btn">Log into an existing account</Link>
           </div>
         </form>
       </div>
