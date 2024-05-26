@@ -21,7 +21,12 @@ export default function Login() {
           <input type="password" placeholder="Password" required/>
           </div>
           <div className="login-btn-container">
+
           <input className="login-btn" type="submit" value="Login"/>
+
+
+          
+
           <Link to="/registration" className="register-btn">Register new account</Link>
           </div>
         </form>
