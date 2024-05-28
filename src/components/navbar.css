@@ -9,6 +9,8 @@ nav{
     
 }
 .navbar{
+    display: flex;
+    align-items: center;
     justify-content:space-around;
     
 }
@@ -30,4 +32,32 @@ nav{
     background-color: #a50000;
     border: 1px solid #C10000;
     
+}
+.navbar img{
+    padding: 10px 0;
+}
+
+/* Responsive design for mobiles */
+
+@media screen and (max-width:576px) {
+   
+    
+    .navbar{
+        justify-content:space-between;
+    
+        
+    }
+    .nav-btn{
+        padding: 10px;
+        border-radius: 13px;
+        border: none;
+        background-color: #C10000;
+        border: 1px solid #C10000;
+    
+        color: #FFFF;
+        text-decoration: none;
+        width: 100px;
+        /* height: 50px; */
+        text-align: center;
+    }
 }

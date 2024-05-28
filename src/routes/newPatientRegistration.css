@@ -5,7 +5,7 @@
     align-items: center;
     align-content: center;
     background-color: #eeeeee;
-    width: 30%;
+    width: 20%;
     border-radius: 20px;
     margin: 100px auto;
     border: 1px solid #C10000;
@@ -29,7 +29,7 @@ form{
     width: 80%;
 }
 .name-cont{
-    display: block;
+    /* display: block; */
     padding: 10px;
     border-bottom: 1px solid #C10000;
     border-radius: 10px;
@@ -41,6 +41,9 @@ form{
 -moz-box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.16);
 box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.16);
     
+}
+.date-input{
+    display: block;
 }
 /* input[type="date"]::-webkit-calendar-picker-indicator { 
     display: absolute;

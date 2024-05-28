@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
+
 import "./newPatientRegistration.css"
+import DashboardNav from "../components/DashboardNav";
 
 export default function NewPatientRegstration() {
   return (
     <div>
        <div>
-      <Navbar/>
+      <DashboardNav/>
     
         <div className="patient-container">
         <h2 className="patient-title">New Patient Registration</h2>
@@ -16,7 +17,7 @@ export default function NewPatientRegstration() {
           
          
           <input className="name-cont" type="text" placeholder="Full Name"            required/>
-          <input className="name-cont" type="date" placeholder="Date of Birth"      required/>
+          <input className="name-cont date-input" type="date" placeholder="Date of Birth"      required/>
           <input className="name-cont" type="number" name="CNP" placeholder="CNP"   required/>
           <input className="name-cont" type="email" placeholder="Email"        required/>
           <input className="name-cont" type="tel" id="phone" name="phone" placeholder="123-456-789" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" required/> 
