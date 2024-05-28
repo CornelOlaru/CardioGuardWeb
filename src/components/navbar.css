@@ -3,9 +3,16 @@ nav{
     display: flex;
     align-items: center;
     flex-direction: row;
+    background-color: #fefefe;
+    width: 100%;
+    position: fixed;
+    top: 0;
 }
 .dashboard-nav{
+    display: flex;
+    align-items: center;
     justify-content: space-between;
+    position: fixed;
     
 }
 .navbar{
@@ -33,7 +40,7 @@ nav{
     border: 1px solid #C10000;
     
 }
-.navbar img{
+nav img{
     padding: 10px 0;
 }
 
@@ -44,7 +51,7 @@ nav{
     
     .navbar{
         justify-content:space-between;
-    
+        
         
     }
     .nav-btn{
@@ -53,7 +60,7 @@ nav{
         border: none;
         background-color: #C10000;
         border: 1px solid #C10000;
-    
+        margin: 0 10px;
         color: #FFFF;
         text-decoration: none;
         width: 100px;

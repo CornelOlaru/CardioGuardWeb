@@ -5,8 +5,9 @@ import passIco from "../assets/pass-ico.svg"
 import { Link } from "react-router-dom"
 export default function Login() {
   return (
-    <div className="login-container">
+    <>
       <Navbar/>
+    <div className="login-container">
         <div className="login-sub-container">
         <h2 className="login-title">Login</h2>
         <p className="login-sub-title">Log into your account</p>
@@ -22,8 +23,8 @@ export default function Login() {
           </div>
           <div className="login-btn-container">
 
-          <Link to="/doctor-dashboard" className="red-btn">Register new account</Link>
-          
+          <Link to="/doctor-dashboard" className="red-btn">Login</Link>
+          <button type="submit"></button>
 
 
           
@@ -32,6 +33,8 @@ export default function Login() {
           </div>
         </form>
       </div>
+      
     </div>
+    </>
   )
 }

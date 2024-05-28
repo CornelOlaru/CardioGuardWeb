@@ -5,11 +5,11 @@ import DashboardNav from "../components/DashboardNav";
 
 export default function NewPatientRegstration() {
   return (
-    <div>
-       <div>
+    
+       <div className="">
       <DashboardNav/>
     
-        <div className="patient-container">
+        <div className="patient-container ">
         <h2 className="patient-title">New Patient Registration</h2>
        
         <form action="/doctor-dashboard">
@@ -40,6 +40,6 @@ export default function NewPatientRegstration() {
         </form>
       </div>
     </div>
-    </div>
+   
   )
 }

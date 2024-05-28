@@ -2,12 +2,16 @@ import DashboardNav from "../components/DashboardNav";
 import deleteIco from "../assets/delete-icon.svg";
 import openIco from "../assets/open-icon.svg";
 import modifyIco from "../assets/modify-icon.svg";
+
 import "./doctorDashboard.css";
 import { Link } from "react-router-dom";
+
 export default function DoctorDashboard() {
   return (
-    <div className="dashboard-container">
+    <>
       <DashboardNav/>
+    <div className="dashboard-container container">
+      
       <div className="new-patient-btn-container">
 
       <Link to="/patient-registration" className="new-patient-btn nav-btn">New Patient</Link>
@@ -102,5 +106,7 @@ export default function DoctorDashboard() {
         
       </table>
     </div>
+   
+    </>
   )
 }
