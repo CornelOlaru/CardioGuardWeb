@@ -4,10 +4,10 @@ import "./registration.css"
 
 export default function Registration() {
   return (
-    <div>
+    <div className="registration-container">
       <Navbar/>
     
-        <div className="registration-container">
+        <div className="registration-sub-container">
         <h2 className="registration-title">Registration</h2>
         <p className="registration-sub-title">Register a new account</p>
         <form action="/doctor-dashboard">
