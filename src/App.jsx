@@ -19,6 +19,11 @@ function App() {
         <Route path='/' element={<Login />}/>
         <Route path='/doctor-dashboard' element={<DoctorDashboard/>}/>
         <Route path='/patient-registration' element={<NewPatientRegstration/>}/>
+
+  
+
+        
+
       </Routes>
       </BrowserRouter>
     </>

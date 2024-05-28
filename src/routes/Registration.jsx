@@ -26,8 +26,13 @@ export default function Registration() {
           </div>
           
           <div className="registration-btn-container">
+
           <input className="red-btn" type="submit" value="Register" />
           
+
+
+      
+
           <Link to="/" className="gray-btn">Log into an existing account</Link>
           </div>
         </form>
