@@ -8,7 +8,7 @@ export default function DashboardNav() {
 //     setClick(!click);
 //   };
   return (
-    <nav className="dashboard-nav">
+    <nav className="dashboard-nav container">
       <Link to="/">
         <img src={logo} alt="CardioGuard Logo" />
       </Link>

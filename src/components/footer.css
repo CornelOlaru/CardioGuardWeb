@@ -1,0 +1,27 @@
+.footer {
+    background-color: #FFF;
+    padding: 20px;
+    text-align: center;
+    /* box-sizing: border-box; */
+    /* height: 50vh; */
+    align-content: center;
+}
+
+.description {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 600px) {
+    .description {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .description {
+        font-size: 16px;
+    }
+}

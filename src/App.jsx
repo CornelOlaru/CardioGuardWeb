@@ -6,6 +6,7 @@ import Login from './routes/Login'
 import Registration from './routes/Registration'
 import DoctorDashboard from './routes/DoctorDashboard'
 import NewPatientRegstration from './routes/NewPatientRegstration'
+import Footer from './components/Footer'
 
 function App() {
  
@@ -19,13 +20,13 @@ function App() {
         <Route path='/doctor-dashboard' element={<DoctorDashboard/>}/>
         <Route path='/patient-registration' element={<NewPatientRegstration/>}/>
         <Route path='/' element={<Login />}/>
-
   
 
         
 
       </Routes>
       </BrowserRouter>
+        <Footer/>
     </>
   )
 }
