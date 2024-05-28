@@ -10,7 +10,7 @@ export default function Login() {
         <div className="login-sub-container">
         <h2 className="login-title">Login</h2>
         <p className="login-sub-title">Log into your account</p>
-        <form className="login-form" action="/doctor-dashboard">
+        <form className="login-form" action="/doctor-dashboard" method="GET">
           
           <div className="name-cont">
           <img src={userIco} alt="Username Icon" />
