@@ -33,6 +33,7 @@ export default function Login() {
 
       if (response.ok) {
         console.log("Autentificare reușită pentru utilizatorul:", username);
+        localStorage.setItem("token", responseData.token); // Salvează token-ul în localStorage
         navigate("/doctor-dashboard");
       } else {
         console.error("Autentificare eșuată. Răspunsul HTTP:", response.status);
