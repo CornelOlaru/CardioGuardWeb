@@ -7,6 +7,8 @@ import Registration from './routes/Registration'
 import DoctorDashboard from './routes/DoctorDashboard'
 import NewPatientRegstration from './routes/NewPatientRegstration'
 import Footer from './components/Footer'
+import PatientInfo from './routes/PatientInfo'
+import ModifyPatientInfo from './routes/ModifyPatientInfo'
 
 function App() {
  
@@ -16,11 +18,14 @@ function App() {
       <BrowserRouter>
       <Routes>
        
+        <Route path='/' element={<Login />}/>
         <Route path='/registration' element={<Registration/>}/>
         <Route path='/doctor-dashboard' element={<DoctorDashboard/>}/>
         <Route path='/patient-registration' element={<NewPatientRegstration/>}/>
-        <Route path='/' element={<Login />}/>
-  
+        <Route path="/doctor-dashboard/:index/patient-info" element={<PatientInfo/>}/>
+        <Route path="/doctor-dashboard/:index/modify-patient-info" element={<ModifyPatientInfo/>}/>
+        
+
 
         
 
