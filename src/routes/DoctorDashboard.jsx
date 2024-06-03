@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import DashboardNav from "../components/DashboardNav";
 import deleteIco from "../assets/delete-icon.svg";
 import openIco from "../assets/open-icon.svg";
@@ -9,7 +9,9 @@ import { Link, useNavigate } from "react-router-dom";
 export default function DoctorDashboard() {
   const [patients, setPatients] = useState([]);
   const navigate = useNavigate();
-
+// const openIcon = () => {
+//   navigate("/doctor-dashboard/patient-info");
+// }
   useEffect(() => {
     async function fetchData() {
       console.log("Sending request to server...");
@@ -105,8 +107,12 @@ export default function DoctorDashboard() {
                   <td>{patient.telephone}</td>
                   <td>{patient.occupation}</td>
                   <td>
-                    <img src={openIco} alt="open icon" />
+                    <Link to={`/doctor-dashboard/${index}/patient-info`}>
+                    <img  src={openIco} alt="open icon" />
+                    </Link>
+                    <Link to={`/doctor-dashboard/${index}/modify-patient-info`}>
                     <img src={modifyIco} alt="modify icon" />
+                    </Link>
                     <img src={deleteIco} alt="delete icon" />
                   </td>
                 </tr>
