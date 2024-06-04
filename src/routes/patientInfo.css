@@ -1,0 +1,24 @@
+.patient-details{
+    display: flex;
+    flex-direction: column;
+    
+  
+  }
+  .patient-info-btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    
+  }
+  .modify{
+    
+    margin-right: 50px;
+  }
+
+  .back{
+   
+    margin-left: 50px;
+
+  }
