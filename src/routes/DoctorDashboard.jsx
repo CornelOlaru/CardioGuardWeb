@@ -76,14 +76,7 @@ export default function DoctorDashboard() {
 
   function calculateAge(dateOfBirth) {
     const dob = new Date(dateOfBirth);
-    if (isNaN(dob.getTime())) {
-        return "Data de naștere invalidă. Introduceți data în formatul 'MM-DD-YYYY'.";
-    }
-    const ageDate = new Date(Date.now() - dob.getTime());
-    const month = (ageDate.getUTCMonth() + 1).toString().padStart(2, '0');
-    const day = ageDate.getUTCDate().toString().padStart(2, '0');
-    const year = ageDate.getUTCFullYear();
-    return `${month}-${day}-${year}`;
+    return dob.getDate() + '-' + dob.getMonth() + '-' + dob.getFullYear();
 }
 //Functia de stergere
 const deletePatient = async (e, id_patient) => {
