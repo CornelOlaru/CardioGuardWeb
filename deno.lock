@@ -255,6 +255,9 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
+        "npm:@fortawesome/fontawesome-svg-core@^6.5.2",
+        "npm:@fortawesome/free-solid-svg-icons@^6.5.2",
+        "npm:@fortawesome/react-fontawesome@^0.2.2",
         "npm:@types/react-dom@^18.2.22",
         "npm:@types/react@^18.2.66",
         "npm:@vitejs/plugin-react@^4.2.1",
