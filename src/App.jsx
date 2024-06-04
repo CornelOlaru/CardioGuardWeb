@@ -22,8 +22,9 @@ function App() {
         <Route path='/registration' element={<Registration/>}/>
         <Route path='/doctor-dashboard' element={<DoctorDashboard/>}/>
         <Route path='/patient-registration' element={<NewPatientRegstration/>}/>
-        <Route path="/doctor-dashboard/:index/patient-info" element={<PatientInfo/>}/>
-        <Route path="/doctor-dashboard/:index/modify-patient-info" element={<ModifyPatientInfo/>}/>
+        <Route path="/doctor-dashboard/:id_patient/patient-info" element={<PatientInfo />} />
+        <Route path="/doctor-dashboard/:id_patient/modify-patient-info" element={<ModifyPatientInfo/>}/>
+        
         
 
 
