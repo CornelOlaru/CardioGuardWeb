@@ -43,9 +43,9 @@ export default function Consultations(){
                 console.log("Data structure is as expected.");
       
                 const formattedConsultations = data.data.map(consultation => ({
-                  date: consultation.date,
-                  time: consultation.time,
-                  observations: consultation.observations
+                  id_consultation: consultation.id_consultation,
+                  consultation_date: consultation.consultation_date,
+                  recommendations: consultation.recommendations
                 }));
       
                 setConsultation(formattedConsultations);
@@ -61,7 +61,81 @@ export default function Consultations(){
       
           fetchData();
         }, [navigate, id_patient]);
-    //Editing^^
+
+    //Functia de stergere
+const deleteConsultation = async (e, id_consultation) => {
+  e.preventDefault();
+  const thisClicked = e.currentTarget;
+
+  // Confirmarea stergerii pacientului
+  const confirmDelete = confirm(`Are you sure you want to delete consultation with ID ${id_consultation}?`);
+  
+  if (!confirmDelete) {
+    return; // pentru anularea stergerii
+  }
+
+  thisClicked.innerText = "Deleting...";
+
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found. Redirecting to login.");
+      navigate("/login");
+      return;
+    }
+
+    // Delete patient
+    const deleteResponse = await fetch(`https://api.cardioguard.eu/medic/consultations/${id_consultation}`, {
+      method: "DELETE",
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (!deleteResponse.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    console.log("Consultation deleted successfully.");
+
+    // Refetch patient data
+    const response = await fetch("https://api.cardioguard.eu/medic/consultation", {
+      method: "GET",
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    console.log("Response received:", data);
+
+    if (data && data.data && Array.isArray(data.data)) {
+      console.log("Data structure is as expected.");
+
+      // Mapăm datele primite la structura așteptată în interfața web
+      const formattedConsultations = data.data.map(consultation => ({
+        id_consultation: consultation.id_consultation,
+        consultation_date: consultation.consultation_date,
+        recommendations: consultation.recommendations
+      }));
+
+      //Afișează datele în tabel
+      setConsultation(formattedConsultations);
+    } else {
+      console.error("Data format is not as expected.");
+      throw new Error("Data format is not as expected.");
+    }
+  } catch (error) {
+    console.error("Error fetching or parsing data:", error);
+  }
+
+  thisClicked.innerText = "Delete";
+}    
+//stergere end
     return (
         <>
           <DashboardNav />
@@ -70,7 +144,6 @@ export default function Consultations(){
                     <thead className="table-head">
                         <tr>
                             <th>Date</th>
-                            <th>Time</th>
                             <th>Observations</th>
                             <th>Action</th>
                         </tr>
@@ -79,14 +152,13 @@ export default function Consultations(){
             {Array.isArray(consultations) && consultations.length > 0 ? (
               consultations.map((consultation) => (
                 <tr key={consultation.id_consultation}>
-                  <td>{consultation.date}</td>
-                  <td>{consultation.time}</td>
-                  <td>{consultation.observations}</td>
+                  <td>{consultation.consultation_date}</td>
+                  <td>{consultation.recommendations}</td>
                   <td>
-                    <Link to={`/doctor-dashboard/${id_patient}/modify-patient-info`}>
+                    <Link to={`/doctor-dashboard/${id_patient}/consultations/${consultation.id_consultation}/modify-consultation`}>
                     <img src={modifyIco} alt="modify icon" />
                     </Link>
-                   <button className="delete-btn" type="button" /*onClick={(e) => deletePatient(e, consultation.id_patient)}*/ >
+                   <button className="delete-btn" type="button" onClick={(e) => deleteConsultation(e, consultation.id_consultation)} >
                     <img src={deleteIco} alt="delete icon" />
                     </button> 
                   </td>

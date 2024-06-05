@@ -4,22 +4,12 @@ import DashboardNav from "../components/DashboardNav";
 import { useEffect, useState } from "react";
 
 export default function ModifyPatientInfo() {
+  const {id_patient} = useParams();
   const { id_consultation } = useParams();
-  //   const [patients, setPatients] = useState(null);
-  {/*const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
-  const [cnp, setCnp] = useState("");
-  const [adress, setAddress] = useState("");
-  const [e_mail, setEmail] = useState("");
-  const [phone_number, setPhoneNumber] = useState("");
-  const [profession, setProfession] = useState("");
-const [date_of_birth, setDate] = useState("");*/}
+  const navigate = useNavigate();
+  const [consultation_date, setDate] = useState("");
+  const [recommendations, setObservations] = useState("");
 
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [observations, setObservations] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -33,7 +23,7 @@ const [date_of_birth, setDate] = useState("");*/}
         }
 
         const response = await fetch(
-          `https://api.cardioguard.eu/medic/consultation/${id_consultation}`,
+          `https://api.cardioguard.eu/medic/consultations/${id_consultation}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -49,21 +39,10 @@ const [date_of_birth, setDate] = useState("");*/}
         const data = await response.json();
         console.log("Full response received:", data);
 
-        if (data && data.first_name) {
+        if (data) {
           console.log("Data structure is as expected.");
-
-          {/*setFirstName(data.first_name);
-          setLastName(data.last_name);
-          setCnp(data.cnp);
-          setAddress(data.street_adress + ", " + data.city);
-          setEmail(data.e_mail);
-          setPhoneNumber(data.phone_number);
-          setProfession(data.profession);
-        setDate(data.date_of_birth);*/}
-
-          setDate(data.date);
-          setTime(data.time);
-          setObservations(data.observations);
+          setDate(data.consultation_date);
+          setObservations(data.recommendations);
         } else {
           console.error("Data format is not as expected:", data);
           throw new Error("Data format is not as expected.");
@@ -82,25 +61,13 @@ const [date_of_birth, setDate] = useState("");*/}
 
     const token = localStorage.getItem("token");
     // Construcția datelor în format URL-encoded
-    /*const loginData = `
-     username=${encodeURIComponent(username)}&
-    first_name=${encodeURIComponent(first_name)}&last_name=${encodeURIComponent(
-      last_name
-    )}&date=${encodeURIComponent(date_of_birth)}&cnp=${encodeURIComponent(
-      cnp
-    )}&adress=${encodeURIComponent(adress)}&e_mail=${encodeURIComponent(
-      e_mail
-    )}&phone_number=${encodeURIComponent(
-      phone_number
-    )}&profession=${encodeURIComponent(profession)}`;*/
-
-    const consultationData = `date=${encodeURIComponent(date)}
-    &time=${encodeURIComponent(time)}
-    &observations=${encodeURIComponent(observations)}`;
+   
+    const consultationData = `consultation_date=${encodeURIComponent(consultation_date)}
+    &recommendations=${encodeURIComponent(recommendations)}`;
 
     try {
       const response = await fetch(
-        `https://api.cardioguard.eu/medic/consultation/${id_consultation}`,
+        `https://api.cardioguard.eu/medic/consultations/${id_consultation}`,
         {
           method: "PUT",
           headers: {
@@ -127,14 +94,6 @@ const [date_of_birth, setDate] = useState("");*/}
     }
   };
 
-  //Function to calculate age based on date of birth
-  //   function calculateAge(dateOfBirth) {
-  //     const dob = new Date(dateOfBirth);
-  //     const diff = Date.now() - dob.getTime();
-  //     const ageDate = new Date(diff);
-  //     return Math.abs(ageDate.getUTCFullYear() - 1970);
-  //   }
-
   return (
     <>
         <div className="patient-container">
@@ -147,37 +106,27 @@ const [date_of_birth, setDate] = useState("");*/}
             <form onSubmit={saveModifiedConsultation}>
                 <input
                     className="name-cont date-input"
-                    type="date"
-                    name="date"
+                    type="datetime-local"
+                    name="consultation_date"
                     placeholder="Date"
-                    value={date}
+                    value={consultation_date}
                     onChange={(e) => setDate(e.target.value)}
                     required 
                 />
 
                 <input
                     className="name-cont"
-                    type="time"
-                    name="time"
-                    placeholder="Time"
-                    value={time}
-                    onChange={(e) => setTime(e.target.value)}
-                    required 
-                />
-
-                <input
-                    className="name-cont"
                     type="text"
-                    name="observations"
+                    name="recommendations"
                     placeholder="Observations"
-                    value={observations}
+                    value={recommendations}
                     onChange={(e) => setObservations(e.target.value)}
                     required 
                 />
                 
                 <div className="patient-registration-btn-container">
                     <input className="red-btn" type="submit" value="Register" />
-                        <Link to="/doctor-dashboard" className="gray-btn">
+                        <Link to={`/doctor-dashboard/${id_patient}/consultations`} className="gray-btn">
                             Cancel
                         </Link>
                 </div>
@@ -187,113 +136,3 @@ const [date_of_birth, setDate] = useState("");*/}
     </>
   );
 }
-
-{/*Divide*/}
- {/* return (
-    <>
-      <div className="patient-container">
-        <DashboardNav />
-
-        <div className="patient-sub-container">
-          <h2 className="patient-title">
-            Modify Patient <br /> Information
-          </h2>
-
-          <form onSubmit={saveModifiedPatient}>
-            <input
-              className="name-cont"
-              type="text"
-              name="id_login"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            <input
-              className="name-cont"
-              type="text"
-              name="first_name"
-              placeholder="First Name"
-              value={first_name}
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-            />
-            <input
-              className="name-cont"
-              type="text"
-              name="last_name"
-              placeholder="Last Name"
-              value={last_name}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-            />
-            <input
-              className="name-cont date-input"
-              type="date"
-              name="date_of_birth"
-              placeholder="Date of Birth"
-              value={date_of_birth}
-              onChange={(e) => setDate(e.target.value)}
-              required
-            />
-            <input
-              className="name-cont"
-              type="number"
-              name="cnp"
-              placeholder="CNP"
-              value={cnp}
-              onChange={(e) => setCnp(e.target.value)}
-              required
-            />
-            <input
-              className="name-cont"
-              type="text"
-              name="address"
-              placeholder="Address"
-              value={adress}
-              onChange={(e) => setAddress(e.target.value)}
-              required
-            />
-            <input
-              className="name-cont"
-              type="email"
-              name="e_mail"
-              placeholder="Email"
-              value={e_mail}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <input
-              className="name-cont"
-              type="number"
-              name="phone_number"
-              id="phone"
-              placeholder="Phone Number"
-              pattern="[0-9]{3}[0-9]{3}[0-9]{3}"
-              value={phone_number}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              required
-            />
-            <small>Format: 123-456-789</small>
-            <input
-              type="text"
-              className="occupation-select name-cont"
-              name="profession"
-              placeholder="Profession"
-              value={profession}
-              onChange={(e) => setProfession(e.target.value)}
-              required
-            />
-
-            <div className="patient-registration-btn-container">
-              <input className="red-btn" type="submit" value="Save" />
-              <Link to="/doctor-dashboard" className="gray-btn">
-                Cancel
-              </Link>
-            </div>
-          </form>
-        </div>
-      </div>
-    </>
-  );
-} */}
