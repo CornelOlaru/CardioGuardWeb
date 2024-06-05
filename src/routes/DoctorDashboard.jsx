@@ -41,6 +41,7 @@ export default function DoctorDashboard() {
     
           // Mapăm datele primite la structura așteptată în interfața web
           const formattedPatients = data.data.map(patient => ({
+            id_patient: patient.id_patient,
             name: `${patient.first_name} ${patient.last_name}`,
             age: calculateAge(patient.date_of_birth),
             cnp: patient.cnp,
@@ -66,13 +67,102 @@ export default function DoctorDashboard() {
   }, [navigate]);
 
   // Funcție pentru calculul vârstei bazat pe dată de naștere
+  // function calculateAge(dateOfBirth) {
+  //   const dob = new Date(dateOfBirth);
+  //   const diff = Date.now() - dob.getTime();
+  //   const ageDate = new Date(diff);
+  //   return Math.abs(ageDate.getUTCFullYear() - 1970);
+  // }
+
   function calculateAge(dateOfBirth) {
     const dob = new Date(dateOfBirth);
-    const diff = Date.now() - dob.getTime();
-    const ageDate = new Date(diff);
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
+    if (isNaN(dob.getTime())) {
+        return "Data de naștere invalidă. Introduceți data în formatul 'MM-DD-YYYY'.";
+    }
+    const ageDate = new Date(Date.now() - dob.getTime());
+    const month = (ageDate.getUTCMonth() + 1).toString().padStart(2, '0');
+    const day = ageDate.getUTCDate().toString().padStart(2, '0');
+    const year = ageDate.getUTCFullYear();
+    return `${month}-${day}-${year}`;
+}
+//Functia de stergere
+const deletePatient = async (e, id_patient) => {
+  e.preventDefault();
+  const thisClicked = e.currentTarget;
+
+  // Confirmarea stergerii pacientului
+  const confirmDelete = confirm(`Are you sure you want to delete patient with ID ${id_patient}?`);
+  
+  if (!confirmDelete) {
+    return; // pentru anularea stergerii
   }
 
+  thisClicked.innerText = "Deleting...";
+
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token not found. Redirecting to login.");
+      navigate("/login");
+      return;
+    }
+
+    // Delete patient
+    const deleteResponse = await fetch(`https://api.cardioguard.eu/medic/patient/${id_patient}`, {
+      method: "DELETE",
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (!deleteResponse.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    console.log("Patient deleted successfully.");
+
+    // Refetch patient data
+    const response = await fetch("https://api.cardioguard.eu/medic/patients", {
+      method: "GET",
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    console.log("Response received:", data);
+
+    if (data && data.data && Array.isArray(data.data)) {
+      console.log("Data structure is as expected.");
+
+      // Mapăm datele primite la structura așteptată în interfața web
+      const formattedPatients = data.data.map(patient => ({
+        id_patient: patient.id_patient,
+        name: `${patient.first_name} ${patient.last_name}`,
+        age: calculateAge(patient.date_of_birth),
+        cnp: patient.cnp,
+        email: patient.e_mail,
+        address: patient.street_adress + ', ' + patient.city,
+        telephone: patient.phone_number,
+        occupation: patient.profession
+      }));
+
+      //Afișează datele în tabel
+      setPatients(formattedPatients);
+    } else {
+      console.error("Data format is not as expected.");
+      throw new Error("Data format is not as expected.");
+    }
+  } catch (error) {
+    console.error("Error fetching or parsing data:", error);
+  }
+
+  thisClicked.innerText = "Delete";
+}
   return (
     <>
       <DashboardNav />
@@ -97,8 +187,8 @@ export default function DoctorDashboard() {
           </thead>
           <tbody className="table-body">
             {Array.isArray(patients) && patients.length > 0 ? (
-              patients.map((patient, index) => (
-                <tr key={index}>
+              patients.map((patient) => (
+                <tr key={patient.id_patient}>
                   <td>{patient.name}</td>
                   <td>{patient.age}</td>
                   <td>{patient.cnp}</td>
@@ -107,13 +197,15 @@ export default function DoctorDashboard() {
                   <td>{patient.telephone}</td>
                   <td>{patient.occupation}</td>
                   <td>
-                    <Link to={`/doctor-dashboard/${index}/patient-info`}>
+                  <Link to={`/doctor-dashboard/${patient.id_patient}/patient-info`}>
                     <img  src={openIco} alt="open icon" />
                     </Link>
-                    <Link to={`/doctor-dashboard/${index}/modify-patient-info`}>
+                    <Link to={`/doctor-dashboard/${patient.id_patient}/modify-patient-info`}>
                     <img src={modifyIco} alt="modify icon" />
                     </Link>
+                   <button className="delete-btn" type="button" onClick={(e) => deletePatient(e, patient.id_patient)}>
                     <img src={deleteIco} alt="delete icon" />
+                    </button> 
                   </td>
                 </tr>
               ))

@@ -37,7 +37,7 @@ p, small{
  border: none;
  background-color: #C10000;
  border: 1px solid #C10000;
-
+cursor: pointer;
  color: #FFFF;
  text-decoration: none;
  width: 100%;
@@ -96,3 +96,4 @@ p, small{
   /* position: relative; */
   bottom: -50px;
 }
+

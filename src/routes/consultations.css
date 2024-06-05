@@ -6,16 +6,15 @@
     margin: 100px auto;
     height: 100vh;
     overflow-x: auto;
-    flex: 1;
 }
-.new-patient-btn-container{
+.new-consultation-btn-container{
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
     
     margin: 20px 0;
 }
-.new-patient-btn{
+.new-consultation-btn{
     display: flex;
     justify-content: center;
     width: 123px;
@@ -24,9 +23,7 @@
 table{
     /* width: 100%; */
     border: 2px solid #c10000;
-    /* border-collapse: collapse; */
-   
-    
+    /* border-collapse: collapse; */        
 }
 
 
@@ -60,11 +57,6 @@ tr img{
     padding-right: 0;
 }
 
-.delete-btn{
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
 @media screen and (max-width:576px) {
     
 }
