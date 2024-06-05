@@ -74,9 +74,15 @@ export default function DoctorDashboard() {
   //   return Math.abs(ageDate.getUTCFullYear() - 1970);
   // }
 
-  function calculateAge(dateOfBirth) {
-    const dob = new Date(dateOfBirth);
-    return dob.getDate() + '-' + dob.getMonth() + '-' + dob.getFullYear();
+  function calculateAge(date) {
+    const currentDate = new Date();
+    const dateOfBirth = new Date(date);
+
+    const daysPerYear = 365.2425;
+    const diff = Math.abs(currentDate - dateOfBirth);
+    const diffInDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    return Math.floor(diffInDays / daysPerYear);
 }
 //Functia de stergere
 const deletePatient = async (e, id_patient) => {
