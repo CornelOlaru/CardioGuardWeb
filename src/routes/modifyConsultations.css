@@ -1,0 +1,144 @@
+.patient-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0 auto;
+    justify-items: center;
+    align-content: center;
+    /* padding: 0 5%; */
+    box-sizing: border-box;
+    height: 100vh;
+}
+.patient-sub-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: #eeeeee;
+    width: 15%;
+    border-radius: 20px;
+    margin: 100px auto;
+    border: 1px solid #C10000;
+    -webkit-box-shadow: 0px 0px 19px 8px rgba(0,0,0,0.16);
+-moz-box-shadow: 0px 0px 19px 8px rgba(0,0,0,0.16);
+box-shadow: 0px 0px 19px 8px rgba(0,0,0,0.16);
+
+}
+
+.patient-title{
+    color: #C10000;
+    margin: 10px;
+    font-size: 36px;
+    font-weight: 900;
+    text-align: center;
+}
+.patient-sub-title{
+    margin-bottom: 10px;
+}
+form{
+    width: 80%;
+}
+.name-cont{
+    /* display: block; */
+    padding: 10px;
+    border-bottom: 1px solid #C10000;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    width: 100%;
+    margin: 10px 0;
+    box-shadow: 25% #000000;
+    -webkit-box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.16);
+-moz-box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.16);
+box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.16);
+    
+}
+.date-input{
+    display: block;
+}
+/* input[type="date"]::-webkit-calendar-picker-indicator { 
+    display: absolute;
+     
+} */
+.occupation-select{
+    border: none;
+    border-bottom: 1px solid #C10000;
+
+}
+
+.name-cont input{
+    margin: 0;
+}
+.patient-btn-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 30px 0;
+    
+}
+.patient-btn-container>a{
+    margin: 5px 0;
+}
+
+
+.patient-registration-btn-container{
+    margin: 30px 0;
+}
+.radio{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+
+/* Responsive Design */
+@media only screen and (max-width: 600px) {
+    .patient-title {
+        font-size: 28px;
+    }
+    .patient-sub-container {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+@media only screen and (min-width: 600px) {
+    .patient-title {
+        font-size: 28px;
+    }
+    .patient-sub-container {
+        width: 55%;
+        max-width: 500px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .patient-sub-container {
+        width: 55%;
+        max-width: 500px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .patient-sub-container {
+        width: 30%;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .patient-sub-container {
+        width: 20%;
+    }
+}
+
+@media only screen and (min-width: 2560px) {
+    .patient-sub-container {
+        width: 15%;
+    }
+}
+
+@media only screen and (min-width: 3840px) {
+    .patient-sub-container {
+        width: 10%;
+    }
+}

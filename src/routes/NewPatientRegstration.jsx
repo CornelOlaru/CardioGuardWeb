@@ -39,7 +39,7 @@ export default function NewPatientRegistration() {
     )}&profession=${encodeURIComponent(profession)}`;
     try {
       const response = await fetch(
-        "https://api.cardioguard.eu/medic/register-patient",
+        "https://api.cardioguard.eu/medic/patient",
         {
           method: "POST",
           headers: {

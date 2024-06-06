@@ -9,6 +9,9 @@ import NewPatientRegstration from './routes/NewPatientRegstration'
 import Footer from './components/Footer'
 import PatientInfo from './routes/PatientInfo'
 import ModifyPatientInfo from './routes/ModifyPatientInfo'
+import Consultations from './routes/Consultations'
+import NewConsultation from './routes/NewConsultation'
+import ModifyConsultations from './routes/ModifyConsultations'
 
 function App() {
  
@@ -22,8 +25,12 @@ function App() {
         <Route path='/registration' element={<Registration/>}/>
         <Route path='/doctor-dashboard' element={<DoctorDashboard/>}/>
         <Route path='/patient-registration' element={<NewPatientRegstration/>}/>
-        <Route path="/doctor-dashboard/:index/patient-info" element={<PatientInfo/>}/>
-        <Route path="/doctor-dashboard/:index/modify-patient-info" element={<ModifyPatientInfo/>}/>
+        <Route path="/doctor-dashboard/:id_patient/patient-info" element={<PatientInfo />} />
+        <Route path="/doctor-dashboard/:id_patient/modify-patient-info" element={<ModifyPatientInfo/>}/>
+        <Route path="/doctor-dashboard/:id_patient/consultations" element={<Consultations/>}/>
+        <Route path="/doctor-dashboard/:id_patient/new-consultation" element={<NewConsultation/>}/>
+        <Route path="/doctor-dashboard/:id_patient/consultations/:id_consultation/modify-consultation" element={<ModifyConsultations/>}/>
+        <Route path='/doctor-dashboard/modify-consultation' element={<ModifyConsultations/>}/> {/*Placeholder*/}
         
 
 
