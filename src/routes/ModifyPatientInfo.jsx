@@ -74,24 +74,21 @@ export default function ModifyPatientInfo() {
 
     const token = localStorage.getItem("token");
     // Construcția datelor în format URL-encoded
-    const loginData = `
-     username=${encodeURIComponent(username)}&
-    first_name=${encodeURIComponent(first_name)}&last_name=${encodeURIComponent(
-      last_name
-    )}&date=${encodeURIComponent(date_of_birth)}&cnp=${encodeURIComponent(
-      cnp
-    )}&adress=${encodeURIComponent(adress)}&e_mail=${encodeURIComponent(
-      e_mail
-    )}&phone_number=${encodeURIComponent(
-      phone_number
-    )}&profession=${encodeURIComponent(profession)}`;
+    let loginData = new FormData();
+    loginData.append("first_name", first_name);
+    loginData.append("last_name", last_name);
+    loginData.append("date_of_birth", date_of_birth);
+    loginData.append("cnp", cnp);
+    loginData.append("adress", adress);
+    loginData.append("e_mail", e_mail);
+    loginData.append("phone_number", phone_number);
+    loginData.append("profession", profession);
     try {
       const response = await fetch(
         `https://api.cardioguard.eu/medic/patient/${id_patient}`,
         {
           method: "PUT",
           headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
             Authorization: `Bearer ${token}`,
           },
           body: loginData,
@@ -133,15 +130,6 @@ export default function ModifyPatientInfo() {
           </h2>
 
           <form onSubmit={saveModifiedPatient}>
-            <input
-              className="name-cont"
-              type="text"
-              name="id_login"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
             <input
               className="name-cont"
               type="text"
