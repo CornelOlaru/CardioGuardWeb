@@ -3,17 +3,21 @@ import "./newPatientRegistration.css";
 import DashboardNav from "../components/DashboardNav";
 import { useEffect, useState } from "react";
 
-export default function ModifyPatientInfo() {
-  const {id_patient} = useParams();
-  const { id_consultation } = useParams();
+export default function ModifyConsultationInfo() {
+  const { id_patient, id_consultation } = useParams();
   const navigate = useNavigate();
-  const [consultation_date, setDate] = useState("");
-  const [recommendations, setObservations] = useState("");
-
+  const [consultation_date, setConsultationDate] = useState("");
+  const [recommendations, setRecommendations] = useState("");
 
   useEffect(() => {
     async function fetchData() {
       console.log("Sending request to server with consultation ID:", id_consultation);
+      if (!id_consultation) {
+        console.error("Consultation ID is undefined. Redirecting to dashboard.");
+        navigate("/doctor-dashboard");
+        return;
+      }
+     
       try {
         const token = localStorage.getItem("token");
         if (!token) {
@@ -41,8 +45,8 @@ export default function ModifyPatientInfo() {
 
         if (data) {
           console.log("Data structure is as expected.");
-          setDate(data.consultation_date);
-          setObservations(data.recommendations);
+          setConsultationDate(data.consultation_date);
+          setRecommendations(data.recommendations);
         } else {
           console.error("Data format is not as expected:", data);
           throw new Error("Data format is not as expected.");
@@ -59,80 +63,97 @@ export default function ModifyPatientInfo() {
   const saveModifiedConsultation = async (e) => {
     e.preventDefault();
 
+    // Verificăm dacă consultation_date este definită și are o valoare validă
+    if (!consultation_date) {
+      console.error("Invalid consultation date: undefined or null.");
+      alert("Invalid consultation date. Please provide a valid date and time.");
+      return;
+    }
+
+    // Verificăm dacă consultation_date este o dată validă
+    if (isNaN(new Date(consultation_date).getTime())) {
+      console.error("Invalid consultation date:", consultation_date);
+      alert("Invalid consultation date. Please provide a valid date and time.");
+      return;
+    }
+
+    // Eliminăm UTC offset-ul și formatarea secundară
+    const formattedDate = new Date(consultation_date).toISOString();
+
     const token = localStorage.getItem("token");
-    // Construcția datelor în format URL-encoded
-   
-    const consultationData = `consultation_date=${encodeURIComponent(consultation_date)}
-    &recommendations=${encodeURIComponent(recommendations)}`;
+    if (!token) {
+      console.error("Token not found. Redirecting to login.");
+      navigate("/login");
+      return;
+    }
 
     try {
+      console.log("Sending PUT request to:", `https://api.cardioguard.eu/medic/consultation/${id_consultation}`);
+      console.log("Request body:", { consultation_date: formattedDate, recommendations });
+
       const response = await fetch(
-        `https://api.cardioguard.eu/medic/consultations/${id_consultation}`,
+        `https://api.cardioguard.eu/medic/consultation/${id_consultation}`,
         {
           method: "PUT",
           headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
             Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
-          body: consultationData,
+          body: JSON.stringify({ consultation_date: formattedDate, recommendations }),
         }
       );
 
       if (response.ok) {
-        navigate("/doctor-dashboard");
+        console.log("Response status:", response.status);
+        alert("Consultation updated successfully!");
+        navigate(`/doctor-dashboard/${id_patient}/consultations`); // Redirect after successful update
       } else {
         const errorResponse = await response.text();
         console.error("Response status:", response.status);
         console.error("Response body:", errorResponse);
         throw new Error("Network response was not ok");
       }
-
-      // const responseData = await response.json();
-      alert("Consultation updated succesfully!");
     } catch (error) {
-      console.error("There was a problem with the fetch operation:", error);
+      console.error("Error fetching or parsing data:", error);
+      alert("There was a problem updating the consultation.");
     }
   };
 
   return (
-    <>
-        <div className="patient-container">
-            <DashboardNav />
-            <div className="patient-sub-container">
-            <h2 className="patient-title">
-                Modify Consultation
-            </h2>
+    <div className="patient-container">
+      <DashboardNav />
+      <div className="patient-sub-container">
+        <h2 className="patient-title">Modify Consultation</h2>
 
-            <form onSubmit={saveModifiedConsultation}>
-                <input
-                    className="name-cont date-input"
-                    type="datetime-local"
-                    name="consultation_date"
-                    placeholder="Date"
-                    value={consultation_date}
-                    onChange={(e) => setDate(e.target.value)}
-                    required 
-                />
+        <form onSubmit={saveModifiedConsultation}>
+          <input
+            className="name-cont date-input"
+            type="datetime-local"
+            name="consultation_date"
+            placeholder="Date"
+            value={consultation_date}
+            onChange={(e) => setConsultationDate(e.target.value)}
+            required 
+          />
 
-                <input
-                    className="name-cont"
-                    type="text"
-                    name="recommendations"
-                    placeholder="Observations"
-                    value={recommendations}
-                    onChange={(e) => setObservations(e.target.value)}
-                    required 
-                />
-                
-                <div className="patient-registration-btn-container">
-                    <input className="red-btn" type="submit" value="Register" />
-                        <Link to={`/doctor-dashboard/${id_patient}/consultations`} className="gray-btn">
-                            Cancel
-                        </Link>
-                </div>
-            </form>
-        </div>
-        </div>
-    </>
+          <input
+            className="name-cont"
+            type="text"
+            name="recommendations"
+            placeholder="Observations"
+            value={recommendations}
+            onChange={(e) => setRecommendations(e.target.value)}
+            required 
+          />
+          
+          <div className="patient-registration-btn-container">
+            <input className="red-btn" type="submit" value="Save" />
+            <Link to={`/doctor-dashboard/${id_patient}/consultations`} className="gray-btn">
+              Cancel
+            </Link>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }

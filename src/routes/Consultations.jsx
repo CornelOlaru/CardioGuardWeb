@@ -85,7 +85,7 @@ const deleteConsultation = async (e, id_consultation) => {
     }
 
     // Delete patient
-    const deleteResponse = await fetch(`https://api.cardioguard.eu/medic/consultations/${id_consultation}`, {
+    const deleteResponse = await fetch(`https://api.cardioguard.eu/medic/consultation/${id_consultation}`, {
       method: "DELETE",
       headers: {
         'Authorization': `Bearer ${token}`
@@ -99,7 +99,7 @@ const deleteConsultation = async (e, id_consultation) => {
     console.log("Consultation deleted successfully.");
 
     // Refetch patient data
-    const response = await fetch("https://api.cardioguard.eu/medic/consultation", {
+    const response = await fetch("https://api.cardioguard.eu/medic/consultations", {
       method: "GET",
       headers: {
         'Authorization': `Bearer ${token}`
@@ -177,12 +177,15 @@ const deleteConsultation = async (e, id_consultation) => {
                   <Link to={`/doctor-dashboard/${id_patient}/new-consultation`} className="new-patient-btn nav-btn">
                     New Consultation
                   </Link>
+                  <Link to="/doctor-dashboard" className="gray-btn back">
+                Back
+              </Link>
                 </div>
-                <div className="new-consultation-btn-container">
+                {/* <div className="new-consultation-btn-container">
                   <Link to="/doctor-dashboard/modify-consultation" className="new-patient-btn nav-btn">
                     Modify Consultation
                   </Link>
-                </div>
+                </div> */}
             </div>
         
         </>

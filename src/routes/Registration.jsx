@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "./registration.css";
 
 export default function Registration() {
+  const navigate = useNavigate(); 
 
   const [formData, setFormData] = useState({
     name: "",
@@ -63,8 +64,9 @@ export default function Registration() {
       console.error("Detalii răspuns server:", responseData); 
     }
   } catch (error) {
-    
-    alert("An error occurred during registration!");
+    navigate("/");
+
+    // alert("An error occurred during registration!");
   }
 };
 
