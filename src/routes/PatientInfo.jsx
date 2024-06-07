@@ -6,7 +6,7 @@ import "./doctorDashboard.css";
 
 export default function PatientInfo() {
   const { id_patient } = useParams();
-  const [patient, setPatient] = useState(null);
+  const [patient, setPatient] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -65,12 +65,16 @@ export default function PatientInfo() {
   }, [navigate, id_patient]);
 
   // Function to calculate age based on date of birth
-  function calculateAge(dateOfBirth) {
-    const dob = new Date(dateOfBirth);
-    const diff = Date.now() - dob.getTime();
-    const ageDate = new Date(diff);
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-  }
+  function calculateAge(date) {
+    const currentDate = new Date();
+    const dateOfBirth = new Date(date);
+
+    const daysPerYear = 365.2425;
+    const diff = Math.abs(currentDate - dateOfBirth);
+    const diffInDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    return Math.floor(diffInDays / daysPerYear);
+}
 
   return (
     <>
@@ -105,6 +109,8 @@ export default function PatientInfo() {
               <p className="name-cont">
                 <strong>Occupation:</strong> {patient.occupation}
               </p>
+              <div className="under-form-cont">
+
               <Link to={`/doctor-dashboard/${id_patient}/consultations`} className="login-btn" style={{display:"block"}}>
                 Consultations
               </Link>
@@ -116,6 +122,7 @@ export default function PatientInfo() {
               <Link to="/doctor-dashboard" className="gray-btn back">
                 Back
               </Link>
+              </div>
               </div>
             </form>
           ) : (

@@ -9,9 +9,8 @@
 }
 .new-consultation-btn-container{
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    
+    align-items: center;
+    justify-content: space-between;
     margin: 20px 0;
 }
 .new-consultation-btn{
@@ -21,8 +20,10 @@
     font-weight: 400;
 }
 table{
-    /* width: 100%; */
+    width: 100%;
+    margin: 0 auto;
     border: 2px solid #c10000;
+    overflow-x: hidden;
     /* border-collapse: collapse; */        
 }
 
@@ -56,7 +57,9 @@ tr img{
     padding:0 5px;
     padding-right: 0;
 }
-
+.back{
+    width: 123px !important;
+}
 @media screen and (max-width:576px) {
     
 }

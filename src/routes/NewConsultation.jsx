@@ -44,7 +44,8 @@ export default function NewConsultation() {
 
       if (response.ok) {
         console.log("Consultation added successfully");
-        navigate("/doctor-dashboard");
+        alert("Consultation added successfully")
+        navigate("/doctor-dashboard/:id_patient/consultations");
       } else {
         const errorResponse = await response.text();
         console.error("Response status:", response.status);
@@ -86,7 +87,7 @@ export default function NewConsultation() {
             />
             
             <div className="patient-registration-btn-container">
-              <input className="red-btn" type="submit" value="Register" />
+              <input className="red-btn" type="submit" value="Save" />
               <Link to="/doctor-dashboard" className="gray-btn">Cancel</Link>
             </div>
           </form>

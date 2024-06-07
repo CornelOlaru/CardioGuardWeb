@@ -7,18 +7,22 @@
   .patient-info-btns{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    margin: 10px 0;
+    margin: 20px 0;
     
   }
   .modify{
     
     margin-right: 50px;
+    width: 123px !important;
   }
 
   .back{
    
     margin-left: 50px;
 
+  }
+  .under-form-cont{
+    margin-top: 50px;
   }
