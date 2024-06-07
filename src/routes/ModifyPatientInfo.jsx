@@ -7,7 +7,7 @@ export default function ModifyPatientInfo() {
   const { id_patient } = useParams();
   //   const [patients, setPatients] = useState(null);
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+//   const [username, setUsername] = useState("");
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [cnp, setCnp] = useState("");

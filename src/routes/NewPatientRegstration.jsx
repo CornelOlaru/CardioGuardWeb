@@ -152,7 +152,7 @@ export default function NewPatientRegistration() {
               onChange={(e) => setPhoneNumber(e.target.value)}
               required
             />
-            <small>Format: 123-456-7890</small>
+            <small>Format: 123-456-789</small>
             <input
               type="text"
               className="occupation-select name-cont"

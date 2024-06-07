@@ -46,7 +46,8 @@ export default function DoctorDashboard() {
             age: calculateAge(patient.date_of_birth),
             cnp: patient.cnp,
             email: patient.e_mail,
-            address: patient.street_adress + ', ' + patient.city,
+            address: patient.street_adress,
+            // address: patient.street_adress + ', ' + patient.city,
             telephone: patient.phone_number,
             occupation: patient.profession
           }));
@@ -67,12 +68,6 @@ export default function DoctorDashboard() {
   }, [navigate]);
 
   // Funcție pentru calculul vârstei bazat pe dată de naștere
-  // function calculateAge(dateOfBirth) {
-  //   const dob = new Date(dateOfBirth);
-  //   const diff = Date.now() - dob.getTime();
-  //   const ageDate = new Date(diff);
-  //   return Math.abs(ageDate.getUTCFullYear() - 1970);
-  // }
 
   function calculateAge(date) {
     const currentDate = new Date();

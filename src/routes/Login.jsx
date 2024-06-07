@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { IoMdEye } from "react-icons/io";
+import { IoMdEyeOff } from "react-icons/io";
 import Navbar from "../components/Navbar";
 import "./login.css";
 import userIco from "../assets/user-ico.svg";
@@ -21,12 +23,15 @@ export default function Login() {
  
 
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(true);
   const [validPwd, setValidPwd] = useState(false);
   const [pwdFocus, setPwdFocus] = useState(false);
 
   const [errMsg, setErrMsg] = useState("");
   
-
+const showPasswordFunction = () => {
+  setShowPassword(!showPassword);
+}
 
   useEffect(() => {
     setValidName(USER_REGEX.test(username));
@@ -122,7 +127,7 @@ export default function Login() {
             <div className="name-cont">
               <img src={passIco} alt="Password Icon" />
               <input
-                type="password"
+                type={showPassword?"password":"text"}
                 placeholder="Password"
                 required
                 value={password}
@@ -130,6 +135,7 @@ export default function Login() {
                 onFocus={() => setPwdFocus(true)}
                 onBlur={() => setPwdFocus(false)}
               /> 
+              <span onClick={showPasswordFunction}>{showPassword ? <IoMdEye icon={IoMdEye}/> : <IoMdEyeOff icon={IoMdEyeOff}/>}</span>
             </div>
               <p
                 id="pwdnote"
